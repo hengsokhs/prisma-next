@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import {prisma} from "@/lib/prisma";
+import {NextResponse} from "next/server";
 
 export async function GET() {
     const users = await prisma.user.findMany();
@@ -17,12 +17,15 @@ export async function POST(req: Request) {
             },
         });
 
-        return NextResponse.json(user);
+        return NextResponse.json(
+            {success: true, message: `User created successfully.`, user: user},
+            {status: 201}
+        );
     } catch (error) {
         console.error(error);
         return NextResponse.json(
-            { error: "Failed to create user"},
-            { status: 500 }
+            {error: `Failed to create user: ${error}`},
+            {status: 500}
         );
     }
 }
