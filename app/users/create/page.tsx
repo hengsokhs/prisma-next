@@ -54,7 +54,7 @@ export default function CreateUserPage() {
                 },
                 body: JSON.stringify({
                     name, email,
-                })
+                }),
             });
 
             // Step : Get response
@@ -63,6 +63,7 @@ export default function CreateUserPage() {
                 console.log(resJson.user);
                 alert(resJson.user.id);
                 form.reset();
+                route.push("/users")
             } else {
                 alert(resJson.error);
             }

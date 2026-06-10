@@ -1,6 +1,6 @@
 "use client";
-import {Button} from "@/components/ui/button";
-import {ButtonGroup} from "@/components/ui/button-group";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
     Table,
     TableBody,
@@ -9,8 +9,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import {useRouter} from "next/navigation";
-import {useEffect, useState} from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type User = {
     id: number;
@@ -64,9 +64,7 @@ export default function User() {
 
     return (
         <div className="flex justify-center">
-
             <div className={"w-3/4"}><Button onClick={handleCreate} variant="outline">Create User</Button>
-
                 <Table className={"mt-2"}>
                     <TableHeader>
                         <TableRow>
@@ -77,38 +75,26 @@ export default function User() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>0</TableCell>
-                            <TableCell>xxx</TableCell>
-                            <TableCell>xxx@mail.com</TableCell>
-                            <TableCell>
-                                <ButtonGroup>
-                                    <Button variant="secondary" size={"xs"}>Info</Button>
-                                    <Button variant="default" size={"xs"}>Edit</Button>
-                                    <Button variant="destructive" size={"xs"}>Delete</Button>
-                                </ButtonGroup>
-                            </TableCell>
-                        </TableRow>
                         {users.map((user: User, index: number) => (
                             <TableRow key={user.id}>
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell>{user.name}</TableCell>
                                 <TableCell>{user.email}</TableCell>
-                                <TableCell>
-                                    <ButtonGroup>
+                                <TableCell className="flex justify-center">
+                                    <ButtonGroup >
                                         <Button onClick={() => handleInfo(user.id)} variant="secondary"
-                                                size={"xs"}>Info</Button>
+                                            size={"xs"}>Info</Button>
                                         <Button onClick={() => handleEdit(user.id)} variant="default"
-                                                size={"xs"}>Edit</Button>
+                                            size={"xs"}>Edit</Button>
                                         <Button onClick={() => handleDelete(user.id)} variant="destructive"
-                                                size={"xs"}>Delete</Button>
+                                            size={"xs"}>Delete</Button>
                                     </ButtonGroup>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
-                </Table></div>
-
+                </Table>
+            </div>
         </div>
     );
 }
